@@ -1,0 +1,2 @@
+# 1st-Stage---User_Candidate-Management-System-without-Employee_HR-integration
+Stage 1 (Completed): User–Candidate Management System manages candidate registration, authentication, profiles, and CRUD operations without HR integration. It builds the base platform. Remaining -> Stage 2 adds HR workflow and PDF generation. Stage 3 integrates PostgreSQL as an off-chain database. Stage 4 introduces Hyperledger Fabric blockchain.
