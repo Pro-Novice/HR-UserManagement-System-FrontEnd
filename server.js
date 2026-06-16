@@ -23,4 +23,10 @@ app.use('/api/users', require('./routes/api/users'));
 //part4 added
 app.use('/api/auth', require('./routes/api/auth'));
 
+//HR employee registration route
+app.use('/api/register', require('./routes/api/register'));
+
+//HR employee login route
+app.use('/api/login', require('./routes/api/login'));
+
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
