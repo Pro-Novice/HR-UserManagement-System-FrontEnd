@@ -19,9 +19,7 @@ app.use(express.json({ extended: false }));
 app.get('/', (req, res) => res.send('API running'));
 
 //part2 added
-app.use('/api/users', require('./routes/api/users'));
-//part4 added
-app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/candidate', require('./routes/api/candidate'));
 
 //HR employee registration route
 app.use('/api/register', require('./routes/api/register'));

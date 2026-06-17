@@ -1,25 +1,26 @@
-//part 2 added
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
 
-//part3 added
-const { check, validationResult } = require('express-validator');
-const User = require('../../models/User');
-//part 4 added
-require('dotenv').config();
-const jwt = require('jsonwebtoken');
-const UserController = require('../../controller/userController');
+const { check } = require('express-validator');
+const UserController = require('../../controller/candidateController');
 
-// @route         GET api/users
-// @description   test route
-// @access        Public
-router.get('/', (req, res) => res.send('User route'));
+const userController = new UserController();
+const auth = require('../../middleware/hrauth');
 
-//part3 added - Postman validation
-// @route         POST api/users
-// @description   register user
-// @access        public
-router.post('/', UserController.addUser);
+router.post(
+    '/',
+    auth,
+    [
+        check('firstname', 'First name is required').not().isEmpty(),
+        check('lastname', 'Last name is required').not().isEmpty(),
+        check('phone', 'Phone number is required').not().isEmpty(),
+        check('email', 'Please include a valid email')
+            .isEmail()
+            .normalizeEmail(),
+        check('password', 'Please enter a password with 6 or more characters')
+            .isLength({ min: 6 })
+    ],
+    userController.addUser
+);
 
 module.exports = router;
