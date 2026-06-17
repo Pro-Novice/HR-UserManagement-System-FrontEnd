@@ -54,6 +54,23 @@
             }
         };
 
-    };
+        updateUser = async (req, res) => {
+            try {
+                const result =
+                await this.userService.updateUser(
+                    req.params.candidateId,
+                    req.body,
+                    req.user.id
+                );
+
+                return res.status(200).json(result);
+            } catch (err) {
+                return res.status(400).json({
+                    message: err.message
+                });
+            }
+        };
+
+    }
 
     module.exports = UserController;

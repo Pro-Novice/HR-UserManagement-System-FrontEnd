@@ -54,6 +54,36 @@ class UserService {
     .populate('createdBy', 'fullname email');
 
     return candidates;
-    }    
+    }
+
+    async updateUser(candidateId, updateData, employeeId) {
+    const candidate = await Candidate.findById(candidateId);
+
+    if (!candidate) {
+        throw new Error('Candidate not found');
+    }
+
+    // ownership check
+    if (candidate.createdBy.toString() !== employeeId) {
+        throw new Error(
+            'You are not authorized to update this candidate'
+        );
+    }
+
+    Object.assign(candidate, updateData);
+
+    const updatedCandidate =
+        await candidate.save();
+
+    return {
+
+        success: true,
+
+        message: 'Candidate updated successfully',
+
+        candidate: updatedCandidate
+
+    };
+}
 }
 module.exports = UserService;

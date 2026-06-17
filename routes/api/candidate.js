@@ -29,4 +29,16 @@ router.get(
     userController.getCandidates
 );
 
+router.put(
+    '/:candidateId',
+    auth,
+    userController.updateUser
+);
+
+// router.delete(
+//     '/:candidateId',
+//     auth,
+//     userController.deleteUser
+// );
+
 module.exports = router;
