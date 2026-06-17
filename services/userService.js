@@ -44,6 +44,16 @@ class UserService {
         }
 
     };
-}
+    }
+    async getCandidatesByEmployee(employeeId) {
+
+    const candidates = await Candidate.find({
+        createdBy: employeeId
+    })
+    .select('-password')
+    .populate('createdBy', 'fullname email');
+
+    return candidates;
+    }    
 }
 module.exports = UserService;

@@ -23,4 +23,10 @@ router.post(
     userController.addUser
 );
 
+router.get(
+    '/',
+    auth,
+    userController.getCandidates
+);
+
 module.exports = router;

@@ -36,6 +36,24 @@
             }
         };
 
-    }
+        getCandidates = async (req, res) => {
+
+            try {
+                const candidates = 
+                await this.userService.getCandidatesByEmployee(
+                    req.user.id
+                );
+                return res.status(200).json({
+                    totalCandidates: candidates.length,
+                    candidates
+                });
+            } catch (err) {
+                return res.status(500).json({
+                    message: err.message
+                });
+            }
+        };
+
+    };
 
     module.exports = UserController;
