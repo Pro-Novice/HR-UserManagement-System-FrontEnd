@@ -41,4 +41,10 @@ router.delete(
     userController.deleteUser
 );
 
+router.get(
+    '/export/pdf',
+    auth,
+    userController.exportCandidatesPdf
+);
+
 module.exports = router;

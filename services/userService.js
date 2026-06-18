@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
+const PDFDocument = require('pdfkit');
 const Candidate = require('../models/Candidate');
 
 class UserService {
@@ -111,6 +111,66 @@ class UserService {
             message: 'Candidate deleted successfully'
         };
     }
+
+    async exportCandidatesPdf(employeeId, res) {
+
+    const candidates =
+        await Candidate.find({
+            createdBy: employeeId
+        });
+
+    const doc = new PDFDocument();
+
+    res.setHeader(
+        'Content-Type',
+        'application/pdf'
+    );
+
+    res.setHeader(
+        'Content-Disposition',
+        'attachment; filename=candidates.pdf'
+    );
+
+    doc.pipe(res);
+
+    doc
+        .fontSize(20)
+        .text('Candidate Report', {
+            align: 'center'
+        });
+
+    doc.moveDown();
+
+    candidates.forEach((candidate, index) => {
+
+        doc
+            .fontSize(12)
+            .text(
+                `${index + 1}. ${candidate.firstname} ${candidate.lastname}`
+            );
+
+        doc.text(
+            `Email: ${candidate.email}`
+        );
+
+        doc.text(
+            `Phone: ${candidate.phone}`
+        );
+
+        doc.text(
+            `Gender: ${candidate.gender}`
+        );
+
+        doc.text(
+            `DOB: ${candidate.dob}`
+        );
+
+        doc.moveDown();
+
+    });
+
+    doc.end();
+}
 
 }
 module.exports = UserService;
