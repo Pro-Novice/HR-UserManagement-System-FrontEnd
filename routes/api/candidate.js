@@ -35,10 +35,10 @@ router.put(
     userController.updateUser
 );
 
-// router.delete(
-//     '/:candidateId',
-//     auth,
-//     userController.deleteUser
-// );
+router.delete(
+    '/:candidateId',
+    auth,
+    userController.deleteUser
+);
 
 module.exports = router;

@@ -85,5 +85,32 @@ class UserService {
 
     };
 }
+
+    async deleteUser(candidateId, employeeId) {
+        // const candidate = await Candidate.findById(candidateId).deleteOne();
+        const candidate = await Candidate.where({ _id: candidateId }).where({ createdBy: employeeId }).findOneAndDelete();
+        if (!candidate) {
+            throw new Error('Candidate not found');
+        }
+
+        // if (!candidate) {
+        //     throw new Error('Candidate not found');
+        // }
+
+        // // ownership check
+        // if (candidate.createdBy.toString() !== employeeId) {
+        //     throw new Error(
+        //         'You are not authorized to delete this candidate'
+        //     );
+        // }
+
+        // await candidate.delete();
+
+        return {
+            success: true,
+            message: 'Candidate deleted successfully'
+        };
+    }
+
 }
 module.exports = UserService;
