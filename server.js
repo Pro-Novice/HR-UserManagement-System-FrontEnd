@@ -18,6 +18,19 @@ app.use(
     })
 );
 
+app.use((req,res,next)=>{
+
+    console.log(
+        "INCOMING REQUEST",
+        req.method,
+        req.url,
+        req.body
+    );
+
+    next();
+
+});
+
 //part2 added
 // initialize middleware
 // we used to have to install body-parser, but now it is a built-in middleware 

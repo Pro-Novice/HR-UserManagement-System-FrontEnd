@@ -325,12 +325,13 @@ const onSubmit = e => {
 
     e.preventDefault();
 
-    console.log("REGISTER BUTTON CLICKED");
+    console.log("REGISTER BUTTON CLICKED",formData);
 
 
     if(password !== confirmPassword){
 
         console.log("Passwords must match");
+        return;
 
     }
     else {
