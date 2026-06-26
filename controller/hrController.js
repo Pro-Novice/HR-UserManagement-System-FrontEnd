@@ -211,7 +211,10 @@ class HrController {
 
 
 addUser = async(req,res)=>{
-
+    console.log(
+    "REQUEST FROM FRONTEND",
+    req.body
+);
 
     const schema = Joi.object({
 

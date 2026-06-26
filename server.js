@@ -1,5 +1,7 @@
 const express = require('express');
 const connectDB = require('./config/db');
+//added while connection from Frontend to backend Express server was failing due to CORS policy, so added this package to fix it
+const cors = require('cors');
 const app = express();
 
 // this is good to use for Heroku deployment to get the port
@@ -7,6 +9,14 @@ const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB
 connectDB();
+
+//added while connection from Frontend to backend Express server was failing due to CORS policy, so added this package to fix it
+app.use(
+    cors({
+        origin:"http://localhost:3000",
+        credentials:true
+    })
+);
 
 //part2 added
 // initialize middleware
