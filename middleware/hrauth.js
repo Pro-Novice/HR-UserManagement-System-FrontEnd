@@ -6,7 +6,7 @@ module.exports = function(req, res, next) {
 
     if (!authHeader) {
         return res.status(401).json({
-            msg: 'Not authorized'
+            message: 'Not authorized'
         });
     }
 
@@ -28,7 +28,7 @@ module.exports = function(req, res, next) {
     } catch (err) {
 
         return res.status(401).json({
-            msg: 'Token is not valid'
+            message: 'Token is not valid'
         });
 
     }

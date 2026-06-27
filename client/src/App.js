@@ -8,8 +8,18 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Home from './components/layout/Home';
 // import footer from './components/footer';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { loadUser } from './actions/auth';
+import Welcome from './components/layout/Welcome';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
+
   return (
     <Router>
     <div className="App">
@@ -19,6 +29,7 @@ function App() {
           <Switch>
             <Route exact path='/register' component={ Register } />
             <Route exact path='/login' component={ Login } />
+            <Route exact path='/welcome' component={ Welcome } />
           </Switch>
       </section>
       {/* <Content /> */}

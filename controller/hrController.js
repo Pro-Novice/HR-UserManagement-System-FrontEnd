@@ -82,7 +82,7 @@
 //                 return res.status(400).json({
 //                     errors: [
 //                         {
-//                             msg: "Employee already exists"
+//                             message: "Employee already exists"
 //                         }
 //                     ]
 //                 });
@@ -97,7 +97,7 @@
 //                 return res.status(400).json({
 //                     errors: [
 //                         {
-//                             msg: "Password and Confirm Password do not match"
+//                             message: "Password and Confirm Password do not match"
 //                         }
 //                     ]
 //                 });
@@ -407,6 +407,17 @@ loginUser = async(req,res)=>{
         // Check employee exists
         const employee = await Employee.findOne({ email });
 
+        console.log(
+            "LOGIN REQUEST",
+            email
+        );
+
+
+        console.log(
+            "FOUND EMPLOYEE",
+            employee
+        );
+
         if (!employee) {
 
             return res.status(401).json({
@@ -499,7 +510,7 @@ getAuthUser = async (req, res) => {
 
         if (!employee) {
             return res.status(404).json({
-                msg: 'User not found'
+                message: 'User not found'
             });
         }
 
@@ -510,7 +521,7 @@ getAuthUser = async (req, res) => {
         console.error(err);
 
         return res.status(500).json({
-            msg: 'Server Error'
+            message: 'Server Error'
         });
 
     }
