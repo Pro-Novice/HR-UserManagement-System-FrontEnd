@@ -17,7 +17,9 @@ const initialState = {
 
     loading:true,
 
-    user:null
+    user:null,
+
+    registrationSuccess:false
 
 };
 
@@ -51,6 +53,17 @@ return {
 
 
 case LOGIN_PASS:
+  return {
+
+    ...state,
+
+    ...payload,
+
+    isAuthenticated:true,
+
+    loading:false
+
+};  
 case REG_PASS:
 
 return {
@@ -85,7 +98,9 @@ return {
 
     loading:false,
 
-    user:null
+    user:null,
+
+    registrationSuccess:false
 
 };
 

@@ -156,7 +156,6 @@ export const register = ({ fullname, email, password, confirmPassword }) => asyn
       type: REG_PASS,
       payload: res.data
     });
-    dispatch(loadUser());
   } catch (err) {
     console.log(
         "BACKEND ERROR RESPONSE",

@@ -241,7 +241,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { register } from '../../actions/auth';
 
@@ -250,7 +250,9 @@ const Register = () => {
 
 
   const dispatch = useDispatch();
-
+  const { registrationSuccess } = useSelector(
+    state => state.auth
+);
 
   const [formData, updateFormData] = useState({
 
@@ -356,6 +358,17 @@ const onSubmit = e => {
   return (
 
     <div>
+        {
+registrationSuccess &&
+
+<div className="alert alert-success">
+
+    HR Registered Successfully.
+    Please login.
+
+</div>
+
+}
 
 
       <h1 className="large text-primary">
